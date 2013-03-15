@@ -11,11 +11,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Cilindro.cpp" />
+    <ClCompile Include="Primitivas.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Cilindro.h" />
+    <ClInclude Include="Primitivas.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{373BC827-5487-4F38-AB87-C3BC27EB5BCC}</ProjectGuid>

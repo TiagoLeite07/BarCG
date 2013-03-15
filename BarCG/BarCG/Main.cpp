@@ -1,7 +1,7 @@
 #define _USE_MATH_DEFINES
 #include <GL/glut.h>
 #include <math.h>
-#include "Cilindro.h"
+#include "Primitivas.h"
 
 float palpha = 0.0;
 float pbeta = 0.0;
@@ -52,8 +52,10 @@ void renderScene(void) {
 			  0.0f,1.0f,0.0f);
 
 	// pôr instruções de desenho aqui
-	cilindro(2,2,50,16);
-
+	//cilindro(2,2,50,16);
+	//cubo(1);
+	//esfera(1,20,20);
+	plano(1,2);
 	// End of frame
 	glutSwapBuffers();
 }
@@ -132,12 +134,12 @@ void rato_movimento(int x, int y)
 	if(arrastar)
 	{
 		if(arrastax != x) {
-			palpha = palpha + 0.01 * ( arrastax < x ? -1 : 1 );
+			palpha = palpha + 0.03 * ( arrastax < x ? -1 : 1 );
 			px = praio*cos(pbeta)*sin(palpha);
 			pz = praio*cos(pbeta)*cos(palpha);}
 
 		if(arrastay != y) {
-			pbeta = pbeta + 0.01 * ( arrastay < y ? 1 : -1 );
+			pbeta = pbeta + 0.03 * ( arrastay < y ? 1 : -1 );
 			if(pbeta > M_PI/2) pbeta = M_PI/2;
 			if(pbeta < -M_PI/2) pbeta = -M_PI/2;
 			px = praio*cos(pbeta)*sin(palpha);
@@ -165,13 +167,17 @@ void menu(int id_op){
 			break;
 		case 3:
 			glDisable(GL_CULL_FACE);
-			glPolygonMode(GL_BACK,GL_FILL);
+			glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
 			break;
 		case 4:
 			glDisable(GL_CULL_FACE);
-			glPolygonMode(GL_FRONT,GL_FILL);
+			glPolygonMode(GL_BACK,GL_FILL);
 			break;
 		case 5:
+			glDisable(GL_CULL_FACE);
+			glPolygonMode(GL_FRONT,GL_FILL);
+			break;
+		case 6:
 			glEnable(GL_CULL_FACE);
 			glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 			break;
@@ -190,7 +196,7 @@ int main(int argc, char **argv) {
 	glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
 	glutInitWindowPosition(100,100);
 	glutInitWindowSize(800,800);
-	glutCreateWindow("CG@DI-UM");
+	glutCreateWindow("BarCG");
 		
 
 // registo de funções 
@@ -207,9 +213,10 @@ int main(int argc, char **argv) {
 	glutCreateMenu(menu);
 	glutAddMenuEntry("GL_FRONT GL_LINE",1);
 	glutAddMenuEntry("GL_BACK GL_LINE",2);
-	glutAddMenuEntry("GL_BACK GL_FILL",3);
-	glutAddMenuEntry("GL_FRONT GL_FILL",4);
-	glutAddMenuEntry("NORMAL",5);
+	glutAddMenuEntry("GL_FRONT_AND_BACK GL_LINE",3);
+	glutAddMenuEntry("GL_BACK GL_FILL",4);
+	glutAddMenuEntry("GL_FRONT GL_FILL",5);
+	glutAddMenuEntry("NORMAL",6);
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
 
 // alguns settings para OpenGL
