@@ -12,14 +12,14 @@ void cilindro(float raio, float altura, int nlados, float seccoes){
 	glBegin(GL_TRIANGLES);
 	//desenha circulo superior
 	for(alpha = 0; alpha < 2*M_PI; alpha += delta){
-			glColor3f(0.0,1.0,1.0);
+			//glColor3f(0.0,1.0,1.0);
 			glVertex3f(raio*sin(alpha), altura/2, raio*cos(alpha));
 			glVertex3f(raio*sin(alpha+delta), altura/2, raio*cos(alpha+delta));
 			glVertex3f(0,altura/2,0);
 	}
 	//desenha circulo inferior
 	for(alpha = 0; alpha < 2*M_PI; alpha += delta){
-			glColor3f(0.0,1.0,1.0);
+			//glColor3f(0.0,1.0,1.0);
 			glVertex3f(0,-altura/2,0);
 			glVertex3f(raio*sin(alpha+delta), -altura/2, raio*cos(alpha+delta));
 			glVertex3f(raio*sin(alpha), -altura/2, raio*cos(alpha));
@@ -30,12 +30,12 @@ void cilindro(float raio, float altura, int nlados, float seccoes){
 			posicaoSeccao = (altura/seccoes)-(altura/2);
 			alturaSeccao = altura/seccoes;
 			for(float i = 1; i <= seccoes; i++){
-				glColor3f(1.0,0.0,0.0);
+				//glColor3f(1.0,0.0,0.0);
 				glVertex3f(raio*sin(alpha), posicaoSeccao, raio*cos(alpha));
 				glVertex3f(raio*sin(alpha), posicaoActual, raio*cos(alpha));
 				glVertex3f(raio*sin(alpha+delta), posicaoActual, raio*cos(alpha+delta));
 
-				glColor3f(0.0,1.0,0.0);
+				//glColor3f(0.0,1.0,0.0);
 				glVertex3f(raio*sin(alpha+delta), posicaoActual, raio*cos(alpha+delta));
 				glVertex3f(raio*sin(alpha+delta), posicaoSeccao, raio*cos(alpha+delta));
 				glVertex3f(raio*sin(alpha), posicaoSeccao, raio*cos(alpha));
@@ -114,26 +114,26 @@ void cubo(float altura){
 	glBegin(GL_TRIANGLES);
 	//desenha quadrado superior
 	for(alfa = 0; alfa < 2*M_PI; alfa = alfa + 2*delta){
-		glColor3f(1,1,0);
+		//glColor3f(1,1,0);
 		glVertex3f(raio*sin(alfa),altura/2,raio*cos(alfa));
 		glVertex3f(raio*sin(alfa+delta),altura/2,raio*cos(alfa+delta));
 		glVertex3f(raio*sin(alfa+2*delta),altura/2,raio*cos(alfa+2*delta));
 	}
 	//desenha quadrado inferior
 	for(alfa = 0; alfa < 2*M_PI; alfa = alfa + 2*delta){
-		glColor3f(1,0,1);
+		//glColor3f(1,0,1);
 		glVertex3f(raio*sin(alfa+2*delta),-altura/2,raio*cos(alfa+2*delta));
 		glVertex3f(raio*sin(alfa+delta),-altura/2,raio*cos(alfa+delta));
 		glVertex3f(raio*sin(alfa),-altura/2,raio*cos(alfa));
 	}
 	//desenha lados do cubo
 	for(alfa = 0; alfa < 2*M_PI; alfa += delta){
-		glColor3f(1,0,0);
+		//glColor3f(1,0,0);
 		glVertex3f(raio*sin(alfa),altura/2,raio*cos(alfa));
 		glVertex3f(raio*sin(alfa),-altura/2,raio*cos(alfa));
 		glVertex3f(raio*sin(alfa+delta),-altura/2,raio*cos(alfa+delta));
 
-		glColor3f(0,1,1);
+		//glColor3f(0,1,1);
 		glVertex3f(raio*sin(alfa),altura/2,raio*cos(alfa));
 		glVertex3f(raio*sin(alfa+delta),-altura/2,raio*cos(alfa+delta));
 		glVertex3f(raio*sin(alfa+delta),altura/2,raio*cos(alfa+delta));
@@ -150,11 +150,11 @@ void esfera(float raio,float seccoes,float lado){
 	glBegin(GL_TRIANGLES);
 	for(anguloBeta = 0; anguloBeta < (M_PI/2); anguloBeta += beta){
 		for(alfa = 0; alfa < 2*M_PI; alfa += delta){
-			glColor3f(1,1,0);
+			//glColor3f(1,1,0);
 			glVertex3f(raio*cos(anguloBeta+beta)*sin(alfa),raio*sin(anguloBeta+beta),raio*cos(anguloBeta+beta)*cos(alfa));
 			glVertex3f(raio*cos(anguloBeta)*sin(alfa),raio*sin(anguloBeta),raio*cos(anguloBeta)*cos(alfa));
 			glVertex3f(raio*cos(anguloBeta)*sin(alfa+delta),raio*sin(anguloBeta),raio*cos(anguloBeta)*cos(alfa+delta));
-			glColor3f(0,1,1);
+			//glColor3f(0,1,1);
 			glVertex3f(raio*cos(anguloBeta+beta)*sin(alfa),raio*sin(anguloBeta+beta),raio*cos(anguloBeta+beta)*cos(alfa));
 			glVertex3f(raio*cos(anguloBeta)*sin(alfa+delta),raio*sin(anguloBeta),raio*cos(anguloBeta)*cos(alfa+delta));
 			glVertex3f(raio*cos(anguloBeta+beta)*sin(alfa+delta),raio*sin(anguloBeta+beta),raio*cos(anguloBeta+beta)*cos(alfa+delta));
@@ -163,11 +163,11 @@ void esfera(float raio,float seccoes,float lado){
 
 	for(anguloBeta = 0; anguloBeta > -(M_PI/2); anguloBeta -= beta){
 		for(alfa = 0;alfa < 2*M_PI; alfa += delta){
-			glColor3f(0,1,0);
+			//glColor3f(0,1,0);
 			glVertex3f(raio*cos(anguloBeta-beta)*sin(alfa),raio*sin(anguloBeta-beta),raio*cos(anguloBeta-beta)*cos(alfa));
 			glVertex3f(raio*cos(anguloBeta)*sin(alfa+delta),raio*sin(anguloBeta),raio*cos(anguloBeta)*cos(alfa+delta));
 			glVertex3f(raio*cos(anguloBeta)*sin(alfa),raio*sin(anguloBeta),raio*cos(anguloBeta)*cos(alfa));
-			glColor3f(0,1,1);
+			//glColor3f(0,1,1);
 			glVertex3f(raio*cos(anguloBeta-beta)*sin(alfa),raio*sin(anguloBeta-beta),raio*cos(anguloBeta-beta)*cos(alfa));
 			glVertex3f(raio*cos(anguloBeta-beta)*sin(alfa+delta),raio*sin(anguloBeta-beta),raio*cos(anguloBeta-beta)*cos(alfa+delta));
 			glVertex3f(raio*cos(anguloBeta)*sin(alfa+delta),raio*sin(anguloBeta),raio*cos(anguloBeta)*cos(alfa+delta));
