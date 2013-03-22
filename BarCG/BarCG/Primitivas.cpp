@@ -47,65 +47,6 @@ void cilindro(float raio, float altura, int nlados, float seccoes){
 		
 }
 
-/*void cubo(float altura){
-	float x = altura/2;
-
-	glBegin(GL_TRIANGLES);
-		glColor3f(1,1,0);
-		glVertex3f(-x,x,-x);
-		glVertex3f(-x,x,x);
-		glVertex3f(x,x,x);
-		glVertex3f(x,x,x);
-		glVertex3f(x,x,-x);
-		glVertex3f(-x,x,-x);
-
-		glColor3f(1,0,0);
-		glVertex3f(x,-x,x);
-		glVertex3f(-x,-x,x);
-		glVertex3f(-x,-x,-x);
-		glVertex3f(-x,-x,-x);
-		glVertex3f(x,-x,-x);
-		glVertex3f(x,-x,x);
-
-		glColor3f(0,1,1);
-		glVertex3f(-x,x,x);
-		glVertex3f(-x,-x,x);
-		glVertex3f(x,-x,x);
-		glVertex3f(x,-x,x);
-		glVertex3f(x,x,x);
-		glVertex3f(-x,x,x);
-
-		glVertex3f(-x,x,x);
-		glVertex3f(-x,-x,x);
-		glVertex3f(x,-x,x);
-		glVertex3f(x,-x,x);
-		glVertex3f(x,x,x);
-		glVertex3f(-x,x,x);
-
-		glVertex3f(x,x,x);
-		glVertex3f(x,-x,x);
-		glVertex3f(x,-x,-x);
-		glVertex3f(x,-x,-x);
-		glVertex3f(x,x,-x);
-		glVertex3f(x,x,x);
-
-		glVertex3f(x,x,-x);
-		glVertex3f(x,-x,-x);
-		glVertex3f(-x,-x,-x);
-		glVertex3f(-x,-x,-x);
-		glVertex3f(-x,x,-x);
-		glVertex3f(x,x,-x);
-
-		glVertex3f(-x,x,-x);
-		glVertex3f(-x,-x,-x);
-		glVertex3f(-x,-x,x);
-		glVertex3f(-x,-x,x);
-		glVertex3f(-x,x,x);
-		glVertex3f(-x,x,-x);
-
-	glEnd();
-}*/
-
 void cubo(float altura){
 	float alfa;
 	float delta = (2*M_PI)/4;

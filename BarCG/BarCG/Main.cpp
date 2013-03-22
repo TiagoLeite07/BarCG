@@ -177,6 +177,7 @@ void menuLinhaComandos(){
 		printf("ESFERA 'raio' 'nlados' 'nseccoes'\n");
 		printf("PLANO 'altura' 'comprimento'\n");
 		printf("---------------------------\n\n");
+		printf("Para trocar de solido fazer 'Botao Direito do Rado'->'NOVO SOLIDO' e voltar a esta linha de comandos\n\n");
 		printf("Insira Comando: ");
 		linha1 = fgets (linha,100,stdin);
 		printf("\n");
