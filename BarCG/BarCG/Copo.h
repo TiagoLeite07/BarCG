@@ -1,0 +1,2 @@
+void copoRedondo();
+void copoCone();

@@ -21,9 +21,21 @@
     <ClCompile Include="Primitivas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Mesa.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Copo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Primitivas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesa.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Copo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

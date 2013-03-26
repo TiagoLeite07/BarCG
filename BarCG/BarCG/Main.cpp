@@ -2,12 +2,14 @@
 #include <GL/glut.h>
 #include <math.h>
 #include "Primitivas.h"
+#include "Mesa.h"
+#include "Copo.h"
 #include <stdio.h>
 #include <string.h>
 
 float palpha = 0.0;
 float pbeta = 0.0;
-float praio = 5.0;
+float praio = 100.0;
 
 float px = praio*cos(pbeta)*sin(palpha);
 float py = praio*sin(pbeta);
@@ -65,14 +67,34 @@ void renderScene(void) {
 			  0.0f,1.0f,0.0f);
 
 	// pôr instruções de desenho aqui
-	if(bcilindro){
+	/*if(bcilindro){
 		cilindro(r,alt,l,s);}
 	if(bcubo){
 		cubo(alt);}
 	if(besfera){
 		esfera(r,s,l);}
 	if(bplano){
-		plano(alt,c);}
+		plano(alt,c);}*/
+	
+	glPushMatrix();
+	glRotatef(-90,1,0,0);
+	glColor3f(1,0,0);
+	plano(200,200);
+	glPopMatrix();
+	glPushMatrix();
+	glColor3f(0,1,0);
+	glScalef(1.5,1.5,1.5);
+	mesaQuadrada();
+	glPopMatrix();
+	glPushMatrix();
+	glScalef(1.5,1.5,1.5);
+	glTranslatef(15,0,0);
+	mesaRedonda();
+	glPopMatrix();
+	glTranslatef(-3,16.5,0);
+	copoCone();
+	glTranslatef(6,0,0);
+	copoRedondo();
 	// End of frame
 	glutSwapBuffers();
 }
@@ -106,13 +128,13 @@ void movimento(unsigned char tecla, int x, int y){
 			pz = praio*cos(pbeta)*cos(palpha);
 			break;
 		case 'z': 
-			praio += 0.1;
+			praio += 1.0;
 			px = praio*cos(pbeta)*sin(palpha);
 			py = praio*sin(pbeta);
 			pz = praio*cos(pbeta)*cos(palpha);
 			break;
 		case 'x':
-			praio -= 0.1;
+			praio -= 1.0;
 			px = praio*cos(pbeta)*sin(palpha);
 			py = praio*sin(pbeta);
 			pz = praio*cos(pbeta)*cos(palpha);
@@ -276,9 +298,9 @@ void menu(int id_op){
 
 
 int main(int argc, char **argv) {
-	printf("BarCG - Primitivas\n");
-	printf("---------------------------\n\n");
-	menuLinhaComandos();
+	//printf("BarCG - Primitivas\n");
+	//printf("---------------------------\n\n");
+	//menuLinhaComandos();
 // inicialização
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
