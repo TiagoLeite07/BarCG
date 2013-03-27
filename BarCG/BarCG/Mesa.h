@@ -1,4 +1,2 @@
-void mesaQuadrada();
-void mesaRedonda();
-void copo();
-void copo2();
+void mesaQuadrada(void);
+void mesaRedonda(void);

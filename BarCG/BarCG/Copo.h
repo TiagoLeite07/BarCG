@@ -1,2 +1,2 @@
-void copoRedondo();
-void copoCone();
+void copoRedondo(void);
+void copoCone(void);

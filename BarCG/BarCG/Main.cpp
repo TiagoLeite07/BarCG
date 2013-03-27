@@ -76,7 +76,7 @@ void renderScene(void) {
 	if(bplano){
 		plano(alt,c);}*/
 	
-	glPushMatrix();
+	/*glPushMatrix();
 	glRotatef(-90,1,0,0);
 	glColor3f(1,0,0);
 	plano(200,200);
@@ -91,10 +91,10 @@ void renderScene(void) {
 	glTranslatef(15,0,0);
 	mesaRedonda();
 	glPopMatrix();
-	glTranslatef(-3,16.5,0);
+	glTranslatef(-3,16.5,0);*/
 	copoCone();
-	glTranslatef(6,0,0);
-	copoRedondo();
+	//glTranslatef(6,0,0);
+	//copoRedondo();
 	// End of frame
 	glutSwapBuffers();
 }
