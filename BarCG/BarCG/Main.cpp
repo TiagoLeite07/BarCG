@@ -4,6 +4,7 @@
 #include "Primitivas.h"
 #include "Mesa.h"
 #include "Copo.h"
+#include "Cadeira.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -92,7 +93,10 @@ void renderScene(void) {
 	mesaRedonda();
 	glPopMatrix();
 	glTranslatef(-3,16.5,0);*/
-	copoCone();
+	//copoCone();
+	//rectangulo(1,1,15);
+	cadeira();
+	//mesaQuadrada();
 	//glTranslatef(6,0,0);
 	//copoRedondo();
 	// End of frame
