@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cadeira.cpp" />
+    <ClCompile Include="Candeeiro.cpp" />
     <ClCompile Include="Copo.cpp" />
     <ClCompile Include="Mesa.cpp" />
     <ClCompile Include="Primitivas.cpp" />
@@ -19,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cadeira.h" />
+    <ClInclude Include="Candeeiro.h" />
     <ClInclude Include="Copo.h" />
     <ClInclude Include="Mesa.h" />
     <ClInclude Include="Primitivas.h" />

@@ -4,6 +4,7 @@
 #include "Primitivas.h"
 #include "Mesa.h"
 #include "Copo.h"
+#include "Candeeiro.h"
 #include "Cadeira.h"
 #include <stdio.h>
 #include <string.h>
@@ -23,6 +24,15 @@ bool bcubo = false;
 bool besfera = false;
 bool bcilindro = false;
 bool bplano = false;
+bool bcadeiraQ = false;
+bool bcadeiraR = false;
+bool bmesaQ = false;
+bool bmesaR = false;
+bool bcopoR = false;
+bool bcopoC = false;
+bool bcandeeiroT = false;
+bool bcandeeiroP = false;
+bool blimites = false;
 
 float alt = 0;
 float r = 0;
@@ -55,6 +65,86 @@ void changeSize(int w, int h) {
 	glMatrixMode(GL_MODELVIEW);
 }
 
+void limitesBar(){
+	glPushMatrix();
+	glRotatef(-90,1,0,0);
+	glColor3f(1,0,0);
+	plano(200,200);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(0,37.5,-100);
+	glColor3f(1,0,1);
+	plano(75,200);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(0,37.5,100);
+	glRotatef(180,0,1,0);
+	glColor3f(1,0,1);
+	plano(75,200);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(100,37.5,0);
+	glRotatef(-90,0,1,0);
+	glColor3f(1,0,1);
+	plano(75,200);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(-100,37.5,0);
+	glRotatef(90,0,1,0);
+	glColor3f(1,0,1);
+	plano(75,200);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(0,75,0);
+	glRotatef(90,1,0,0);
+	glColor3f(0,1,1);
+	plano(200,200);
+	glPopMatrix();
+}
+
+void teste(){
+	glPushMatrix();
+	glColor3f(0,1,0);
+	glScalef(1.5,1.5,1.5);
+	mesaQuadrada();
+	glPopMatrix();
+	glPushMatrix();
+	glScalef(1.5,1.5,1.5);
+	glTranslatef(15,0,0);
+	mesaRedonda();
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(-3,16.5,0);
+	copoCone();
+	glTranslatef(6,0,0);
+	copoRedondo();
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(0,74,0);
+	glRotatef(180,1,0,0);
+	glScalef(2,2,2);
+	candeeiroTeto();
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(0,40,-99.5);
+	candeeiroParede();
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(0,0,-12);
+	glScalef(1.5,1.5,1.5);
+	cadeiraQuadrada();
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(-14,0,0);
+	glScalef(1.5,1.5,1.5);
+	cadeiraRedonda();
+	glPopMatrix();
+}
 
 void renderScene(void) {
 
@@ -68,37 +158,48 @@ void renderScene(void) {
 			  0.0f,1.0f,0.0f);
 
 	// pôr instruções de desenho aqui
-	/*if(bcilindro){
-		cilindro(r,alt,l,s);}
-	if(bcubo){
-		cubo(alt);}
-	if(besfera){
-		esfera(r,s,l);}
-	if(bplano){
-		plano(alt,c);}*/
-	
-	/*glPushMatrix();
-	glRotatef(-90,1,0,0);
-	glColor3f(1,0,0);
-	plano(200,200);
-	glPopMatrix();
-	glPushMatrix();
-	glColor3f(0,1,0);
-	glScalef(1.5,1.5,1.5);
-	mesaQuadrada();
-	glPopMatrix();
-	glPushMatrix();
-	glScalef(1.5,1.5,1.5);
-	glTranslatef(15,0,0);
-	mesaRedonda();
-	glPopMatrix();
-	glTranslatef(-3,16.5,0);*/
-	//copoCone();
-	//rectangulo(1,1,15);
-	cadeira();
-	//mesaQuadrada();
-	//glTranslatef(6,0,0);
-	//copoRedondo();
+	if(bcilindro){
+		cilindro(r,alt,l,s);
+	}
+	else if(bcubo){
+		cubo(alt);
+	}
+	else if(besfera){
+		esfera(r,s,l);
+	}
+	else if(bplano){
+		plano(alt,c);
+	}
+	else if(bcadeiraQ){
+		cadeiraQuadrada();
+	}
+	else if(bcadeiraR){
+		cadeiraRedonda();
+	}
+	else if(bcopoR){
+		copoRedondo();
+	}
+	else if(bcopoC){
+		copoCone();
+	}
+	else if(bmesaR){
+		mesaRedonda();
+	}
+	else if(bmesaQ){
+		mesaQuadrada();
+	}
+	else if(bcandeeiroT){
+		candeeiroTeto();
+	}
+	else if(bcandeeiroP){
+		candeeiroParede();
+	}
+	else if(blimites){
+		limitesBar();
+	}
+
+	//limitesBar();
+	//teste();
 	// End of frame
 	glutSwapBuffers();
 }
@@ -195,13 +296,22 @@ void rato_movimento(int x, int y){
 void menuLinhaComandos(){
 	int nargumentos;
 	bool solido = false;
-	char linha[100],*linha1,comando[10],arg1[10],arg2[10],arg3[10],arg4[10];
+	char linha[100],*linha1,comando[20],arg1[10],arg2[10],arg3[10],arg4[10];
 	while(!solido){
 		printf("Comandos Validos:\n");
 		printf("CUBO 'altura'\n");
 		printf("CILINDRO 'raio' 'altura' 'nlados' 'nseccoes'\n");
 		printf("ESFERA 'raio' 'nlados' 'nseccoes'\n");
 		printf("PLANO 'altura' 'comprimento'\n");
+		printf("CADEIRA_QUADRADA\n");
+		printf("CADEIRA_REDONDA\n");
+		printf("MESA_QUADRADA\n");
+		printf("MESA_REDONDA\n");
+		printf("COPO_REDONDO\n");
+		printf("COPO_CONE\n");
+		printf("CANDEEIRO_TETO\n");
+		printf("CANDEEIRO_PAREDE\n");
+		printf("LIMITES\n");
 		printf("---------------------------\n\n");
 		printf("Para trocar de solido fazer 'Botao Direito do Rado'->'NOVO SOLIDO' e voltar a esta linha de comandos\n\n");
 		printf("Insira Comando: ");
@@ -218,6 +328,15 @@ void menuLinhaComandos(){
 					besfera = false;
 					bcilindro = false;
 					bplano = false;
+					bcadeiraQ = false;
+					bcadeiraR = false;
+					bcopoC = false;
+					bcopoR = false;
+					bcandeeiroP = false;
+					bcandeeiroT = false;
+					bmesaQ = false;
+					bmesaR = false;
+					blimites = false;
 				}
 				else printf("Comando Invalido!\n");
 		}
@@ -232,6 +351,15 @@ void menuLinhaComandos(){
 					besfera = false;
 					bcilindro = true;
 					bplano = false;
+					bcadeiraQ = false;
+					bcadeiraR = false;
+					bcopoC = false;
+					bcopoR = false;
+					bcandeeiroP = false;
+					bcandeeiroT = false;
+					bmesaQ = false;
+					bmesaR = false;
+					blimites = false;
 				}
 				else printf("Comando Invalido!\n");
 		}
@@ -245,6 +373,15 @@ void menuLinhaComandos(){
 					besfera = true;
 					bcilindro = false;
 					bplano = false;
+					bcadeiraQ = false;
+					bcadeiraR = false;
+					bcopoC = false;
+					bcopoR = false;
+					bcandeeiroP = false;
+					bcandeeiroT = false;
+					bmesaQ = false;
+					bmesaR = false;
+					blimites = false;
 				}
 				else printf("Comando Invalido!\n");
 		}
@@ -257,6 +394,186 @@ void menuLinhaComandos(){
 					besfera = false;
 					bcilindro = false;
 					bplano = true;
+					bcadeiraQ = false;
+					bcadeiraR = false;
+					bcopoC = false;
+					bcopoR = false;
+					bcandeeiroP = false;
+					bcandeeiroT = false;
+					bmesaQ = false;
+					bmesaR = false;
+					blimites = false;
+				}
+				else printf("Comando Invalido!\n");
+		}
+		else if (strcmp (comando,"CADEIRA_QUADRADA") == 0){
+    			if (nargumentos == 1){
+					solido = true;
+					bcubo = false;
+					besfera = false;
+					bcilindro = false;
+					bplano = false;
+					bcadeiraQ = true;
+					bcadeiraR = false;
+					bcopoC = false;
+					bcopoR = false;
+					bcandeeiroP = false;
+					bcandeeiroT = false;
+					bmesaQ = false;
+					bmesaR = false;
+					blimites = false;
+				}
+				else printf("Comando Invalido!\n");
+		}
+		else if (strcmp (comando,"CADEIRA_REDONDA") == 0){
+    			if (nargumentos == 1){
+					solido = true;
+					bcubo = false;
+					besfera = false;
+					bcilindro = false;
+					bplano = false;
+					bcadeiraQ = false;
+					bcadeiraR = true;
+					bcopoC = false;
+					bcopoR = false;
+					bcandeeiroP = false;
+					bcandeeiroT = false;
+					bmesaQ = false;
+					bmesaR = false;
+					blimites = false;
+				}
+				else printf("Comando Invalido!\n");
+		}
+		else if (strcmp (comando,"COPO_REDONDO") == 0){
+    			if (nargumentos == 1){
+					solido = true;
+					bcubo = false;
+					besfera = false;
+					bcilindro = false;
+					bplano = false;
+					bcadeiraQ = false;
+					bcadeiraR = false;
+					bcopoC = false;
+					bcopoR = true;
+					bcandeeiroP = false;
+					bcandeeiroT = false;
+					bmesaQ = false;
+					bmesaR = false;
+					blimites = false;
+				}
+				else printf("Comando Invalido!\n");
+		}
+		else if (strcmp (comando,"COPO_CONE") == 0){
+    			if (nargumentos == 1){
+					solido = true;
+					bcubo = false;
+					besfera = false;
+					bcilindro = false;
+					bplano = false;
+					bcadeiraQ = false;
+					bcadeiraR = false;
+					bcopoC = true;
+					bcopoR = false;
+					bcandeeiroP = false;
+					bcandeeiroT = false;
+					bmesaQ = false;
+					bmesaR = false;
+					blimites = false;
+				}
+				else printf("Comando Invalido!\n");
+		}
+		else if (strcmp (comando,"MESA_QUADRADA") == 0){
+    			if (nargumentos == 1){
+					solido = true;
+					bcubo = false;
+					besfera = false;
+					bcilindro = false;
+					bplano = false;
+					bcadeiraQ = false;
+					bcadeiraR = false;
+					bcopoC = false;
+					bcopoR = false;
+					bcandeeiroP = false;
+					bcandeeiroT = false;
+					bmesaQ = true;
+					bmesaR = false;
+					blimites = false;
+				}
+				else printf("Comando Invalido!\n");
+		}
+		else if (strcmp (comando,"MESA_REDONDA") == 0){
+    			if (nargumentos == 1){
+					solido = true;
+					bcubo = false;
+					besfera = false;
+					bcilindro = false;
+					bplano = false;
+					bcadeiraQ = false;
+					bcadeiraR = false;
+					bcopoC = false;
+					bcopoR = false;
+					bcandeeiroP = false;
+					bcandeeiroT = false;
+					bmesaQ = false;
+					bmesaR = true;
+					blimites = false;
+				}
+				else printf("Comando Invalido!\n");
+		}
+		else if (strcmp (comando,"CANDEEIRO_TETO") == 0){
+    			if (nargumentos == 1){
+					solido = true;
+					bcubo = false;
+					besfera = false;
+					bcilindro = false;
+					bplano = false;
+					bcadeiraQ = false;
+					bcadeiraR = false;
+					bcopoC = false;
+					bcopoR = false;
+					bcandeeiroP = false;
+					bcandeeiroT = true;
+					bmesaQ = false;
+					bmesaR = false;
+					blimites = false;
+				}
+				else printf("Comando Invalido!\n");
+		}
+		else if (strcmp (comando,"CANDEEIRO_PAREDE") == 0){
+    			if (nargumentos == 1){
+					solido = true;
+					bcubo = false;
+					besfera = false;
+					bcilindro = false;
+					bplano = false;
+					bcadeiraQ = false;
+					bcadeiraR = false;
+					bcopoC = false;
+					bcopoR = false;
+					bcandeeiroP = true;
+					bcandeeiroT = false;
+					bmesaQ = false;
+					bmesaR = false;
+					blimites = false;
+				}
+				else printf("Comando Invalido!\n");
+		}
+		else if (strcmp (comando,"LIMITES") == 0){
+    			if (nargumentos == 1){
+					solido = true;
+					bcubo = false;
+					besfera = false;
+					bcilindro = false;
+					bplano = false;
+					bcadeiraQ = false;
+					bcadeiraR = false;
+					bcopoC = false;
+					bcopoR = false;
+					bcandeeiroP = false;
+					bcandeeiroT = false;
+					bmesaQ = false;
+					bmesaR = false;
+					blimites = true;
 				}
 				else printf("Comando Invalido!\n");
 		}
@@ -302,9 +619,14 @@ void menu(int id_op){
 
 
 int main(int argc, char **argv) {
-	//printf("BarCG - Primitivas\n");
-	//printf("---------------------------\n\n");
-	//menuLinhaComandos();
+	printf("BarCG - Primitivas\n");
+	printf("---------------------------\n\n");
+	printf("MOVIMENTO DA CAMERA:\n");
+	printf("Mover Camera -> Rato ou 'a','s','d','w'\n");
+	printf("Zoom in -> 'x'\n");
+	printf("Zoom out -> 'z'\n");
+	printf("---------------------------\n\n");
+	menuLinhaComandos();
 // inicialização
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);

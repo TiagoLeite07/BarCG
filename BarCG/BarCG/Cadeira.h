@@ -1,1 +1,2 @@
-void cadeira(void);
+void cadeiraQuadrada(void);
+void cadeiraRedonda(void);
