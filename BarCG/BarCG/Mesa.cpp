@@ -39,16 +39,16 @@ void mesaRedonda(void){
 	//desenha base da mesa
 	glPushMatrix();
 	glTranslatef(0,0.5,0);
-	cilindro(4,1,20,1);
+	cilindro(4,1,30,1);
 	glPopMatrix();
 	//desenha perna da mesa
 	glPushMatrix();
 	glTranslatef(0,9,0);
-	cilindro(1,16,20,16);
+	cilindro(1,16,30,16);
 	glPopMatrix();
 	//desenha tabua da mesa
 	glPushMatrix();
 	glTranslatef(0,17.5,0);
-	cilindro(8,1,30,1);
+	cilindro(8,1,40,1);
 	glPopMatrix();
 }

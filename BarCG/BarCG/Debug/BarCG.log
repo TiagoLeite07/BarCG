@@ -1,26 +1,2 @@
-﻿  Main.cpp
-c:\users\tiago\documents\visual studio 2012\projects\barcg\barcg\main.cpp(320): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          c:\program files\microsoft visual studio 11.0\vc\include\stdio.h(311) : see declaration of 'sscanf'
-c:\users\tiago\documents\visual studio 2012\projects\barcg\barcg\main.cpp(321): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          c:\program files\microsoft visual studio 11.0\vc\include\stdio.h(311) : see declaration of 'sscanf'
-c:\users\tiago\documents\visual studio 2012\projects\barcg\barcg\main.cpp(325): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          c:\program files\microsoft visual studio 11.0\vc\include\stdio.h(311) : see declaration of 'sscanf'
-c:\users\tiago\documents\visual studio 2012\projects\barcg\barcg\main.cpp(345): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          c:\program files\microsoft visual studio 11.0\vc\include\stdio.h(311) : see declaration of 'sscanf'
-c:\users\tiago\documents\visual studio 2012\projects\barcg\barcg\main.cpp(346): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          c:\program files\microsoft visual studio 11.0\vc\include\stdio.h(311) : see declaration of 'sscanf'
-c:\users\tiago\documents\visual studio 2012\projects\barcg\barcg\main.cpp(347): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          c:\program files\microsoft visual studio 11.0\vc\include\stdio.h(311) : see declaration of 'sscanf'
-c:\users\tiago\documents\visual studio 2012\projects\barcg\barcg\main.cpp(348): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          c:\program files\microsoft visual studio 11.0\vc\include\stdio.h(311) : see declaration of 'sscanf'
-c:\users\tiago\documents\visual studio 2012\projects\barcg\barcg\main.cpp(368): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          c:\program files\microsoft visual studio 11.0\vc\include\stdio.h(311) : see declaration of 'sscanf'
-c:\users\tiago\documents\visual studio 2012\projects\barcg\barcg\main.cpp(369): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          c:\program files\microsoft visual studio 11.0\vc\include\stdio.h(311) : see declaration of 'sscanf'
-c:\users\tiago\documents\visual studio 2012\projects\barcg\barcg\main.cpp(370): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          c:\program files\microsoft visual studio 11.0\vc\include\stdio.h(311) : see declaration of 'sscanf'
-c:\users\tiago\documents\visual studio 2012\projects\barcg\barcg\main.cpp(390): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          c:\program files\microsoft visual studio 11.0\vc\include\stdio.h(311) : see declaration of 'sscanf'
-c:\users\tiago\documents\visual studio 2012\projects\barcg\barcg\main.cpp(391): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          c:\program files\microsoft visual studio 11.0\vc\include\stdio.h(311) : see declaration of 'sscanf'
+﻿  Mesa.cpp
   BarCG.vcxproj -> C:\Users\Tiago\Documents\Visual Studio 2012\Projects\BarCG\Debug\BarCG.exe
