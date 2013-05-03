@@ -1,7 +1,11 @@
 #define _USE_MATH_DEFINES
+#include <stdlib.h>
+#include <GL/glew.h>
 #include <GL/glut.h>
 #include <math.h>
 #include "Primitivas.h"
+#include <vector>
+#include "SolidoRevolucao.h"
 
 void copoRedondo(void){
 	float delta;
@@ -182,4 +186,100 @@ void copoCone(void){
 			}
 	}
 	glEnd();
+}
+
+void preparaCopoRedondo(void){
+	std::vector<float> points;
+	float raio = 1;
+	float raio2 = (raio-(raio/8));
+	float altura = 2;
+	float altura2 = altura/4;
+	points.push_back(0);
+	points.push_back(0);
+	points.push_back(raio/2);
+	points.push_back(0);
+	points.push_back(raio);
+	points.push_back(0);
+	points.push_back(raio);
+	points.push_back(altura/4);
+	points.push_back(raio);
+	points.push_back(altura/2);
+	points.push_back(raio);
+	points.push_back(3*altura/4);
+	points.push_back(raio);
+	points.push_back(altura);
+	points.push_back(raio2);
+	points.push_back(altura);
+	points.push_back(raio2);
+	points.push_back(3*altura/4);
+	points.push_back(raio2);
+	points.push_back(altura/2);
+	points.push_back(raio2);
+	points.push_back(altura2);
+	points.push_back(raio2/2);
+	points.push_back(altura2);
+	points.push_back(0);
+	points.push_back(altura2);
+
+	solidRevolucao(50,&points);
+}
+
+void preparaCopoCone(void){
+	float altura = 1.5;
+	float alturaBase = 0.125;
+	float alturaPega = 1;
+	float raio = 1.5;
+	float raioB = raio*0.4;
+	float raioP = raio*0.05;
+	float raio2 = (raio-(raio/8));
+	float raioSeccao = (raio-(raioP))/4;
+	float raioSeccao2 = raio2/4;
+	float posicaoSeccao = altura/4;
+	std::vector<float> points;
+
+	//base
+	points.push_back(0);
+	points.push_back(0);
+	points.push_back(raioB);
+	points.push_back(0);
+	points.push_back(raioB);
+	points.push_back(alturaBase);
+
+	//pega
+	points.push_back(raioP);
+	points.push_back(alturaBase);
+	points.push_back(raioP);
+	points.push_back(alturaBase+alturaPega/4);
+	points.push_back(raioP);
+	points.push_back(alturaBase+alturaPega/2);
+	points.push_back(raioP);
+	points.push_back(alturaBase+(3*alturaPega/4));
+	points.push_back(raioP);
+	points.push_back(alturaBase+alturaPega);
+
+	//cone exterior
+	points.push_back(raioP+raioSeccao);
+	points.push_back(alturaBase+alturaPega+posicaoSeccao);
+	points.push_back(raioP+2*raioSeccao);
+	points.push_back(alturaBase+alturaPega+2*posicaoSeccao);
+	points.push_back(raioP+3*raioSeccao);
+	points.push_back(alturaBase+alturaPega+3*posicaoSeccao);
+
+	points.push_back(raio);
+	points.push_back(alturaBase+alturaPega+altura);
+
+	//cone interior
+	points.push_back(raio2);
+	points.push_back(alturaBase+alturaPega+altura);
+
+	points.push_back(raio2-raioSeccao2);
+	points.push_back(alturaBase+alturaPega+3*posicaoSeccao);
+	points.push_back(raio2-2*raioSeccao2);
+	points.push_back(alturaBase+alturaPega+2*posicaoSeccao);
+	points.push_back(raio2-3*raioSeccao2);
+	points.push_back(alturaBase+alturaPega+posicaoSeccao);
+	points.push_back(0);
+	points.push_back(alturaBase+alturaPega);
+
+	solidRevolucao(50,&points);
 }

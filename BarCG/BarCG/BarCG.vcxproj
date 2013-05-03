@@ -17,6 +17,7 @@
     <ClCompile Include="Mesa.cpp" />
     <ClCompile Include="Primitivas.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="SolidoRevolucao.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cadeira.h" />
@@ -24,6 +25,7 @@
     <ClInclude Include="Copo.h" />
     <ClInclude Include="Mesa.h" />
     <ClInclude Include="Primitivas.h" />
+    <ClInclude Include="SolidoRevolucao.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{373BC827-5487-4F38-AB87-C3BC27EB5BCC}</ProjectGuid>
@@ -73,6 +75,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

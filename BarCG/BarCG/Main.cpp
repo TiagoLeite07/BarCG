@@ -1,4 +1,6 @@
 #define _USE_MATH_DEFINES
+#include <stdlib.h>
+#include <GL/glew.h>
 #include <GL/glut.h>
 #include <math.h>
 #include "Primitivas.h"
@@ -6,6 +8,7 @@
 #include "Copo.h"
 #include "Candeeiro.h"
 #include "Cadeira.h"
+#include "SolidoRevolucao.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -148,17 +151,24 @@ void teste(){
 
 void renderScene(void) {
 
+	float pos[4] = {1.0, 1.0, 1.0, 0.0};
+	GLfloat amb[3] = {0.4, 0.4, 0.4};
+	GLfloat diff[3] = {1.0, 1.0, 1.0};
+
 	// clear buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// set the camera
 	glLoadIdentity();
+	glLightfv(GL_LIGHT0, GL_POSITION, pos);
+	glLightfv(GL_LIGHT0, GL_AMBIENT, amb);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, diff);
 	gluLookAt(px,py,pz, 
 		      0.0,0.0,0.0,
 			  0.0f,1.0f,0.0f);
 
 	// pôr instruções de desenho aqui
-	if(bcilindro){
+	/*if(bcilindro){
 		cilindro(r,alt,l,s);
 	}
 	else if(bcubo){
@@ -196,7 +206,39 @@ void renderScene(void) {
 	}
 	else if(blimites){
 		limitesBar();
-	}
+	}*/
+
+	/*float color[] = {0.9, 0.1, 0.1, 1.0};
+	glMaterialfv(GL_FRONT,GL_AMBIENT_AND_DIFFUSE,color);
+	preparaEsfera(50,2,50);
+	desenhaCilindro();
+	glPushMatrix();
+	glTranslatef(5,0,0);
+	float color2[] = {0.1, 0.9, 0.1, 1.0};
+	glMaterialfv(GL_FRONT,GL_AMBIENT_AND_DIFFUSE,color2);
+	preparaCilindro(50,4,1,50);
+	desenhaCilindro();
+	glPopMatrix();*/
+
+	/*float color2[] = {0.1, 0.9, 0.1, 1.0};
+	glMaterialfv(GL_FRONT,GL_AMBIENT_AND_DIFFUSE,color2);
+	preparaCilindro(50,4,1,50);
+	desenhaCilindro();*/
+
+	float color2[] = {0.1, 0.9, 0.1, 1.0};
+	glMaterialfv(GL_FRONT,GL_AMBIENT_AND_DIFFUSE,color2);
+	//mesaRedonda();
+	//mesaQuadrada();
+	//preparaPlano(50,50);
+	//desenhaSolido();
+	//preparaCopoRedondo();
+	//preparaCopoCone();
+	//desenhaSolidRev();
+	//cadeiraQuadrada();
+	//cadeiraRedonda();
+	//candeeiroTeto();
+	//candeeiroParede();
+
 
 	//limitesBar();
 	//teste();
@@ -247,6 +289,7 @@ void movimento(unsigned char tecla, int x, int y){
 		default:
 			break;
 	}
+	glutPostRedisplay();
 }
 
 //função de processamento do clique do rato
@@ -289,11 +332,11 @@ void rato_movimento(int x, int y){
 		arrastax = x;
 		arrastay = y;
 
-		//glutPostRedisplay();
+		glutPostRedisplay();
 	}
 }
 
-void menuLinhaComandos(){
+/*void menuLinhaComandos(){
 	int nargumentos;
 	bool solido = false;
 	char linha[100],*linha1,comando[20],arg1[10],arg2[10],arg3[10],arg4[10];
@@ -579,7 +622,7 @@ void menuLinhaComandos(){
 		}
 		else printf("Comando Invalido!\n\n");
 	}
-}
+}*/
 
 // escrever função de processamento do menu
 void menu(int id_op){
@@ -609,7 +652,7 @@ void menu(int id_op){
 			glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 			break;
 		case 7:
-			menuLinhaComandos();
+			//menuLinhaComandos();
 			break;
 		default:
 			break;
@@ -619,14 +662,14 @@ void menu(int id_op){
 
 
 int main(int argc, char **argv) {
-	printf("BarCG - Primitivas\n");
+	/*printf("BarCG - Primitivas\n");
 	printf("---------------------------\n\n");
 	printf("MOVIMENTO DA CAMERA:\n");
 	printf("Mover Camera -> Rato ou 'a','s','d','w'\n");
 	printf("Zoom in -> 'x'\n");
 	printf("Zoom out -> 'z'\n");
 	printf("---------------------------\n\n");
-	menuLinhaComandos();
+	menuLinhaComandos();*/
 // inicialização
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
@@ -636,8 +679,10 @@ int main(int argc, char **argv) {
 		
 // registo de funções
 	glutDisplayFunc(renderScene);
-	glutIdleFunc(renderScene);
+	//glutIdleFunc(renderScene);
 	glutReshapeFunc(changeSize);
+
+	glewInit();
 
 // pôr aqui registo da funções do teclado e rato
 	glutKeyboardFunc(movimento);
@@ -658,6 +703,10 @@ int main(int argc, char **argv) {
 // alguns settings para OpenGL
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
+
+// inicialização da luz
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
 	
 // entrar no ciclo do GLUT 
 	glutMainLoop();
