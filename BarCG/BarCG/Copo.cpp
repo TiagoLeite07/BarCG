@@ -188,7 +188,7 @@ void copoCone(void){
 	glEnd();
 }
 
-void preparaCopoRedondo(void){
+std::vector<float> preparaCopoRedondo(void){
 	std::vector<float> points;
 	float raio = 1;
 	float raio2 = (raio-(raio/8));
@@ -220,11 +220,10 @@ void preparaCopoRedondo(void){
 	points.push_back(altura2);
 	points.push_back(0);
 	points.push_back(altura2);
-
-	solidRevolucao(50,&points);
+	return points;
 }
 
-void preparaCopoCone(void){
+std::vector<float> preparaCopoCone(void){
 	float altura = 1.5;
 	float alturaBase = 0.125;
 	float alturaPega = 1;
@@ -280,6 +279,5 @@ void preparaCopoCone(void){
 	points.push_back(alturaBase+alturaPega+posicaoSeccao);
 	points.push_back(0);
 	points.push_back(alturaBase+alturaPega);
-
-	solidRevolucao(50,&points);
+	return points;
 }

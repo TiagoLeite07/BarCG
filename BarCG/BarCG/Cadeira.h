@@ -1,2 +1,2 @@
 void cadeiraQuadrada(void);
-void cadeiraRedonda(void);
+void cadeiraRedonda(SolidoRevolucao sol);

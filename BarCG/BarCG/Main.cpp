@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <GL/glew.h>
 #include <GL/glut.h>
+#include <IL/il.h>
 #include <math.h>
 #include "Primitivas.h"
 #include "Mesa.h"
@@ -43,6 +44,13 @@ float l = 0;
 float s = 0;
 float c = 0;
 
+unsigned int texID;
+
+SolidoRevolucao cil;
+SolidoRevolucao esf;
+SolidoRevolucao copoR;
+SolidoRevolucao copoC;
+
 void changeSize(int w, int h) {
 
 	// Prevent a divide by zero, when window is too short
@@ -71,42 +79,54 @@ void changeSize(int w, int h) {
 void limitesBar(){
 	glPushMatrix();
 	glRotatef(-90,1,0,0);
-	glColor3f(1,0,0);
-	plano(200,200);
+	glScalef(200,200,1);
+	//glColor3f(1,0,0);
+	//plano(200,200);
+	desenhaPlano();
 	glPopMatrix();
 
 	glPushMatrix();
 	glTranslatef(0,37.5,-100);
-	glColor3f(1,0,1);
-	plano(75,200);
+	glScalef(200,75,1);
+	//glColor3f(1,0,1);
+	//plano(75,200);
+	desenhaPlano();
 	glPopMatrix();
 
 	glPushMatrix();
 	glTranslatef(0,37.5,100);
 	glRotatef(180,0,1,0);
-	glColor3f(1,0,1);
-	plano(75,200);
+	glScalef(200,75,1);
+	//glColor3f(1,0,1);
+	//plano(75,200);
+	desenhaPlano();
 	glPopMatrix();
 
 	glPushMatrix();
 	glTranslatef(100,37.5,0);
 	glRotatef(-90,0,1,0);
-	glColor3f(1,0,1);
-	plano(75,200);
+	glScalef(200,75,1);
+	//glColor3f(1,0,1);
+	//plano(75,200);
+	desenhaPlano();
 	glPopMatrix();
 
 	glPushMatrix();
 	glTranslatef(-100,37.5,0);
 	glRotatef(90,0,1,0);
-	glColor3f(1,0,1);
-	plano(75,200);
+	glScalef(200,75,1);
+	//glColor3f(1,0,1);
+	//plano(75,200);
+	desenhaPlano();
 	glPopMatrix();
 
 	glPushMatrix();
 	glTranslatef(0,75,0);
 	glRotatef(90,1,0,0);
-	glColor3f(0,1,1);
-	plano(200,200);
+	glScalef(200,200,1);
+	//glColor3f(0,1,1);
+	//plano(200,200);
+	desenhaPlano();
 	glPopMatrix();
 }
 
@@ -114,28 +134,32 @@ void teste(){
 	glPushMatrix();
 	glColor3f(0,1,0);
 	glScalef(1.5,1.5,1.5);
+	//glBindTexture(GL_TEXTURE_2D, texID);
 	mesaQuadrada();
+	//glBindTexture(GL_TEXTURE_2D, 0);
 	glPopMatrix();
 	glPushMatrix();
 	glScalef(1.5,1.5,1.5);
 	glTranslatef(15,0,0);
-	mesaRedonda();
+	mesaRedonda(cil);
 	glPopMatrix();
 	glPushMatrix();
 	glTranslatef(-3,16.5,0);
-	copoCone();
+	copoC.desenhaSolidRev();
+	//copoCone();
 	glTranslatef(6,0,0);
-	copoRedondo();
+	copoR.desenhaSolidRev();
+	//copoRedondo();
 	glPopMatrix();
 	glPushMatrix();
 	glTranslatef(0,74,0);
 	glRotatef(180,1,0,0);
 	glScalef(2,2,2);
-	candeeiroTeto();
+	candeeiroTeto(cil);
 	glPopMatrix();
 	glPushMatrix();
 	glTranslatef(0,40,-99.5);
-	candeeiroParede();
+	candeeiroParede(cil,esf);
 	glPopMatrix();
 	glPushMatrix();
 	glTranslatef(0,0,-12);
@@ -145,7 +169,7 @@ void teste(){
 	glPushMatrix();
 	glTranslatef(-14,0,0);
 	glScalef(1.5,1.5,1.5);
-	cadeiraRedonda();
+	cadeiraRedonda(cil);
 	glPopMatrix();
 }
 
@@ -168,80 +192,63 @@ void renderScene(void) {
 			  0.0f,1.0f,0.0f);
 
 	// pôr instruções de desenho aqui
-	/*if(bcilindro){
-		cilindro(r,alt,l,s);
+	if(bcilindro){
+		//cilindro(r,alt,l,s);
+		glScalef(r,alt,r);
+		cil.desenhaSolidRev();
 	}
 	else if(bcubo){
-		cubo(alt);
+		//cubo(alt);
+		glScalef(alt,alt,alt);
+		desenhaCubo();
 	}
 	else if(besfera){
-		esfera(r,s,l);
+		//esfera(r,s,l);
+		glScalef(r,r,r);
+		esf.desenhaSolidRev();
 	}
 	else if(bplano){
-		plano(alt,c);
+		//plano(alt,c);
+		glScalef(c,alt,1);
+		desenhaPlano();
 	}
 	else if(bcadeiraQ){
+		//cadeiraQuadrada();
 		cadeiraQuadrada();
 	}
 	else if(bcadeiraR){
-		cadeiraRedonda();
+		//cadeiraRedonda();
+		cadeiraRedonda(cil);
 	}
 	else if(bcopoR){
-		copoRedondo();
+		//copoRedondo();
+		copoR.desenhaSolidRev();
 	}
 	else if(bcopoC){
-		copoCone();
+		//copoCone();
+		copoC.desenhaSolidRev();
 	}
 	else if(bmesaR){
-		mesaRedonda();
+		//mesaRedonda();
+		mesaRedonda(cil);
 	}
 	else if(bmesaQ){
+		//mesaQuadrada();
 		mesaQuadrada();
 	}
 	else if(bcandeeiroT){
-		candeeiroTeto();
+		//candeeiroTeto();
+		candeeiroTeto(cil);
 	}
 	else if(bcandeeiroP){
-		candeeiroParede();
+		//candeeiroParede();
+		candeeiroParede(cil,esf);
 	}
 	else if(blimites){
+		//limitesBar();
 		limitesBar();
-	}*/
+	}
 
-	/*float color[] = {0.9, 0.1, 0.1, 1.0};
-	glMaterialfv(GL_FRONT,GL_AMBIENT_AND_DIFFUSE,color);
-	preparaEsfera(50,2,50);
-	desenhaCilindro();
-	glPushMatrix();
-	glTranslatef(5,0,0);
-	float color2[] = {0.1, 0.9, 0.1, 1.0};
-	glMaterialfv(GL_FRONT,GL_AMBIENT_AND_DIFFUSE,color2);
-	preparaCilindro(50,4,1,50);
-	desenhaCilindro();
-	glPopMatrix();*/
-
-	/*float color2[] = {0.1, 0.9, 0.1, 1.0};
-	glMaterialfv(GL_FRONT,GL_AMBIENT_AND_DIFFUSE,color2);
-	preparaCilindro(50,4,1,50);
-	desenhaCilindro();*/
-
-	float color2[] = {0.1, 0.9, 0.1, 1.0};
-	glMaterialfv(GL_FRONT,GL_AMBIENT_AND_DIFFUSE,color2);
-	//mesaRedonda();
-	//mesaQuadrada();
-	//preparaPlano(50,50);
-	//desenhaSolido();
-	//preparaCopoRedondo();
-	//preparaCopoCone();
-	//desenhaSolidRev();
-	//cadeiraQuadrada();
-	//cadeiraRedonda();
-	//candeeiroTeto();
-	//candeeiroParede();
-
-
-	//limitesBar();
-	//teste();
 	// End of frame
 	glutSwapBuffers();
 }
@@ -315,13 +322,13 @@ void rato_click(int botao, int estado, int x, int y){
 void rato_movimento(int x, int y){
 	if(arrastar){
 		if(arrastax != x){
-			palpha = palpha + 0.03 * ( arrastax < x ? -1 : 1 );
+			palpha = palpha + 0.1 * ( arrastax < x ? -1 : 1 );
 			px = praio*cos(pbeta)*sin(palpha);
 			pz = praio*cos(pbeta)*cos(palpha);
 		}
 
 		if(arrastay != y){
-			pbeta = pbeta + 0.03 * ( arrastay < y ? 1 : -1 );
+			pbeta = pbeta + 0.1 * ( arrastay < y ? 1 : -1 );
 			if(pbeta > M_PI/2) pbeta = M_PI/2;
 			if(pbeta < -M_PI/2) pbeta = -M_PI/2;
 			px = praio*cos(pbeta)*sin(palpha);
@@ -336,7 +343,7 @@ void rato_movimento(int x, int y){
 	}
 }
 
-/*void menuLinhaComandos(){
+void menuLinhaComandos(){
 	int nargumentos;
 	bool solido = false;
 	char linha[100],*linha1,comando[20],arg1[10],arg2[10],arg3[10],arg4[10];
@@ -622,7 +629,7 @@ void rato_movimento(int x, int y){
 		}
 		else printf("Comando Invalido!\n\n");
 	}
-}*/
+}
 
 // escrever função de processamento do menu
 void menu(int id_op){
@@ -652,7 +659,19 @@ void menu(int id_op){
 			glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 			break;
 		case 7:
-			//menuLinhaComandos();
+			glEnable(GL_LIGHTING);
+			break;
+		case 8:
+			glDisable(GL_LIGHTING);
+			break;
+		case 9:
+			glEnable(GL_TEXTURE_2D);
+			break;
+		case 10:
+			glDisable(GL_TEXTURE_2D);
+			break;
+		case 11:
+			menuLinhaComandos();
 			break;
 		default:
 			break;
@@ -660,16 +679,38 @@ void menu(int id_op){
 	glutPostRedisplay();
 }
 
+void init() {
+	ilInit();
+	unsigned int t, tw, th;
+	unsigned char *texData;
+	ilGenImages(1,&t);
+	ilBindImage(t);
+	ilLoadImage((ILstring)"C:\\terra.jpg");
+	tw = ilGetInteger(IL_IMAGE_WIDTH);
+	th = ilGetInteger(IL_IMAGE_HEIGHT);
+	ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE);
+	texData = ilGetData();
+	glGenTextures(1,&texID); // unsigned int texID - variavel global;
+	glBindTexture(GL_TEXTURE_2D,texID);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tw, th, 0, GL_RGBA, GL_UNSIGNED_BYTE, texData);
+
+// alguns settings para OpenGL
+	glEnable(GL_TEXTURE_2D);
+}
 
 int main(int argc, char **argv) {
-	/*printf("BarCG - Primitivas\n");
+	printf("BarCG - Primitivas\n");
 	printf("---------------------------\n\n");
 	printf("MOVIMENTO DA CAMERA:\n");
 	printf("Mover Camera -> Rato ou 'a','s','d','w'\n");
 	printf("Zoom in -> 'x'\n");
 	printf("Zoom out -> 'z'\n");
 	printf("---------------------------\n\n");
-	menuLinhaComandos();*/
+	menuLinhaComandos();
 // inicialização
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
@@ -683,6 +724,7 @@ int main(int argc, char **argv) {
 	glutReshapeFunc(changeSize);
 
 	glewInit();
+	init();
 
 // pôr aqui registo da funções do teclado e rato
 	glutKeyboardFunc(movimento);
@@ -697,7 +739,11 @@ int main(int argc, char **argv) {
 	glutAddMenuEntry("GL_BACK GL_FILL",4);
 	glutAddMenuEntry("GL_FRONT GL_FILL",5);
 	glutAddMenuEntry("NORMAL",6);
-	glutAddMenuEntry("NOVO SOLIDO",7);
+	glutAddMenuEntry("LIGAR LUZ",7);
+	glutAddMenuEntry("DELIGAR LUZ",8);
+	glutAddMenuEntry("LIGAR TEXTURA EXEMPLO",9);
+	glutAddMenuEntry("DESLIGAR TEXTURA EXEMPLO",10);
+	glutAddMenuEntry("NOVO SOLIDO",11);
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
 
 // alguns settings para OpenGL
@@ -707,7 +753,23 @@ int main(int argc, char **argv) {
 // inicialização da luz
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
-	
+
+
+	preparaCubo(1);
+	preparaPlano(1,1);
+	std::vector<float> pontos;
+	pontos = preparaCilindro(1,1,50);
+	cil = SolidoRevolucao (50,&pontos);
+	std::vector<float> pontos2;
+	pontos2 = preparaEsfera(1,50);
+	esf = SolidoRevolucao (50,&pontos2);
+	std::vector<float> pontos3;
+	pontos3 = preparaCopoRedondo();
+	copoR = SolidoRevolucao (50,&pontos3);
+	std::vector<float> pontos4;
+	pontos4 = preparaCopoCone();
+	copoC = SolidoRevolucao (50,&pontos4);
+
 // entrar no ciclo do GLUT 
 	glutMainLoop();
 

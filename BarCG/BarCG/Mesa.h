@@ -1,2 +1,2 @@
 void mesaQuadrada(void);
-void mesaRedonda(void);
+void mesaRedonda(SolidoRevolucao sol);

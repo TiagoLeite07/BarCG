@@ -1,2 +1,2 @@
-void candeeiroTeto(void);
-void candeeiroParede(void);
+void candeeiroTeto(SolidoRevolucao sol);
+void candeeiroParede(SolidoRevolucao cil,SolidoRevolucao esf);

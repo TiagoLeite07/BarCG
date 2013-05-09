@@ -1,4 +1,4 @@
 void copoRedondo(void);
 void copoCone(void);
-void preparaCopoRedondo(void);
-void preparaCopoCone(void);
+std::vector<float> preparaCopoRedondo(void);
+std::vector<float> preparaCopoCone(void);
