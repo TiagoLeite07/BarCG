@@ -10,6 +10,10 @@ void mesaQuadrada(void){
 	int k;
 	float coord[] = {-5,5,-5,-5,5,5,5,5,5,5,5,-5};
 	//desenha pernas da mesa
+	float mcolor[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, mcolor);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, mcolor);
+	glBindTexture(GL_TEXTURE_2D, 1);
 	for(k = 0; k < 4; k++){
 		glPushMatrix();
 		glTranslatef(coord[a++],coord[a++],coord[a++]);
@@ -25,9 +29,14 @@ void mesaQuadrada(void){
 	glScalef(16,1,16);
 	desenhaCubo();
 	glPopMatrix();
+	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 void mesaRedonda(SolidoRevolucao sol){
+	float mcolor[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, mcolor);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, mcolor);
+	glBindTexture(GL_TEXTURE_2D, 6);
 	//desenha base da mesa
 	//preparaCilindro(50,1,4,50);
 	glPushMatrix();
@@ -54,4 +63,5 @@ void mesaRedonda(SolidoRevolucao sol){
 	//cilindro(8,1,40,1);
 	sol.desenhaSolidRev();
 	glPopMatrix();
+	glBindTexture(GL_TEXTURE_2D, 0);
 }

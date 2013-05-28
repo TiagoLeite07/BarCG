@@ -7,11 +7,14 @@
 #include "SolidoRevolucao.h"
 
 void cadeiraQuadrada(void){
-	int i;
 	float j;
 	int a = 0;
 	int k;
 	float coord[] = {-3,2.5,-3,-3,2.5,3,3,2.5,3,3,2.5,-3};
+	float mcolor[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, mcolor);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, mcolor);
+	glBindTexture(GL_TEXTURE_2D, 8);
 	//desenha pernas da cadeira
 	for(k = 0; k < 4; k++){
 		glPushMatrix();
@@ -57,36 +60,37 @@ void cadeiraQuadrada(void){
 	glRotatef(45,0,1,0);
 	desenhaCubo();
 	glPopMatrix();
+	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 void cadeiraRedonda(SolidoRevolucao sol){
+	float mcolor[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, mcolor);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, mcolor);
 	//cilindro da parte de baixo
-	//preparaCilindro(50,1,2,50);
 	glPushMatrix();
 	glTranslatef(0,0.5,0);
 	glScalef(2,1,2);
-		//glColor3f(1,0,0);
-	//cilindro(2,1,30,1);
+	glBindTexture(GL_TEXTURE_2D, 6);
 	sol.desenhaSolidRev();
+	glBindTexture(GL_TEXTURE_2D, 0);
 	glPopMatrix();
 
 	//cilindro interior que apoia o "taburete"
-	//preparaCilindro(50,1,1,50);
 	glPushMatrix();
 	glTranslatef(0,1.5,0);
-		//glColor3f(0,1,0);
-	//cilindro(1,1,30,1);
+	glBindTexture(GL_TEXTURE_2D, 6);
 	sol.desenhaSolidRev();
+	glBindTexture(GL_TEXTURE_2D, 0);
 	glPopMatrix();
-	//preparaCilindro(50,4,3,50);
 
 	//cilindro da parte superior
 	glPushMatrix();
 	glTranslatef(0,4,0);
 	glScalef(3,4,3);
-		//glColor3f(0,0,1);
-	//cilindro(3,4,30,4);
+	glBindTexture(GL_TEXTURE_2D, 1);
 	sol.desenhaSolidRev();
+	glBindTexture(GL_TEXTURE_2D, 0);
 	glPopMatrix();
 
 }
