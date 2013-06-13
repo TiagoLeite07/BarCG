@@ -27,12 +27,6 @@
     <ClInclude Include="Primitivas.h" />
     <ClInclude Include="SolidoRevolucao.h" />
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\terra.jpg" />
-    <Image Include="..\Wood1.jpg" />
-    <Image Include="..\Wood2.jpg" />
-    <Image Include="..\Wood3.jpg" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{373BC827-5487-4F38-AB87-C3BC27EB5BCC}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>

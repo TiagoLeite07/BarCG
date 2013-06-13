@@ -24,6 +24,8 @@ float deltaMove = 0;
 float deltaUp = 0;
 float deltaAngle = 0;
 
+int w,h;
+
 bool arrastar;
 int arrastax, arrastay;
 
@@ -54,8 +56,13 @@ SolidoRevolucao esf;
 SolidoRevolucao copoR;
 SolidoRevolucao copoC;
 
-void changeSize(int w, int h) {
+float time=0,timebase=0;
+int frame=0;
+int fps=0;
 
+void changeSize(int w1, int h1) {
+	w = w1;
+	h = h1;
 	// Prevent a divide by zero, when window is too short
 	// (you cant make a window with zero width).
 	if(h == 0)
@@ -197,6 +204,8 @@ void lookup(float i) {
 }
 
 void renderScene(void) {
+
+	time=glutGet(GLUT_ELAPSED_TIME);
 
 	if (deltaMove)
 		mover(deltaMove);
@@ -462,6 +471,30 @@ void renderScene(void) {
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glDisable(GL_BLEND);
 
+	//teapot
+	glPushMatrix();
+	float mcolor2[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, mcolor2);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, mcolor2);
+	glTranslatef(12,57.5,-96);
+	glutSolidTeapot(2);
+	glPopMatrix();
+
+	frame++;
+	char num[10];
+	if(time-timebase > 1000){
+		fps = (frame*1000)/(time-timebase);
+
+		_itoa(fps,num,10);
+		char texto[14] = "BarCG - FPS: ";
+		char resultado[24];
+		strcpy(resultado,texto);
+		strcat(resultado,num);
+		glutSetWindowTitle(resultado);
+		timebase = time;
+		frame = 0;
+	}
+	
 	// End of frame
 	glutSwapBuffers();
 }
